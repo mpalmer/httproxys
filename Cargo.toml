@@ -1,0 +1,29 @@
+[package]
+name = "httproxys"
+description = "A simple TLS logging proxy"
+license = "GPL-3.0-only"
+homepage = "https://github.com/mpalmer/httproxys"
+repository = "https://github.com/mpalmer/httproxys"
+include = [
+	"/LICENCE",
+	"/src/*.rs"
+]
+authors = ["Matt Palmer <matt@hezmatt.org>"]
+version = "0.0.0-git"
+
+edition = "2021"
+rust-version = "1.74.0"
+
+[dependencies]
+anyhow = { version = "1.0", features = ["backtrace"] }
+clap = { version = "4.5", features = ["derive"] }
+rustls = "0.23"
+rustls-platform-verifier = "0.4"
+rustls-webpki = { version = "0.102", default-features = false, features = ["std"] }
+time = { version = "0.3.36", features = ["formatting", "local-offset"] }
+tokio = { version = "1.41", features = ["macros", "net", "rt-multi-thread", "io-util"] }
+tokio-rustls = "0.26"
+
+[profile.release]
+# Tell `rustc` to optimize for small code size.
+opt-level = "s"
