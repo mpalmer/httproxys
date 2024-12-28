@@ -92,7 +92,7 @@ impl Proxy {
 		let tz_offset = UtcOffset::current_local_offset().unwrap_or(UtcOffset::UTC);
 		let logfile = format!("{logprefix}.{}.{}", peer.ip(), peer.port());
 		let target = self.cfg.connect.clone();
-		let log = File::create(&logfile).context("failed to create logfile {logfile}")?;
+		let log = File::create(&logfile).context(format!("failed to create logfile {logfile}"))?;
 
 		let formatter = if self.cfg.raw {
 			ChunkFormatter::Raw
