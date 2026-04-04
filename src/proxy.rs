@@ -59,7 +59,7 @@ impl Proxy {
 				.with_root_certificates(trust_store)
 				.with_no_client_auth()
 		} else {
-			ClientConfig::with_platform_verifier()
+			ClientConfig::with_platform_verifier()?
 		});
 
 		let acceptor = TlsAcceptor::from(tls_server_config);
